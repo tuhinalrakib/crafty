@@ -1,24 +1,25 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-
-// ডেমো ইউজার স্টোর (In-memory store)
-let users = [];
+import clientPromise, { collection } from "@/lib/dbConnect";
+import dbConnect from "@/lib/dbConnect";
 
 export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        name: { label: "Name", type: "text", placeholder: "Your Name" },
-        email: { label: "Email", type: "email", placeholder: "example@mail.com" },
+        email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const user = users.find((u) => u.email === credentials.email);
+        const { email, password } = credentials
+        const user = await dbConnect(collection.NEXT_USER).findOne({email, password})
+        console.log(user)
 
-        if (!user) {
-          throw new Error("User not found. Please register.");
+        const isPasswordOk = email == user.email
+        if (isPasswordOk) {
+          return user
         }
 
         const isValid = await bcrypt.compare(credentials.password, user.password);
@@ -27,7 +28,12 @@ export const authOptions = {
           throw new Error("Invalid password");
         }
 
-        return { id: user.email, name: user.name, email: user.email, image: user.image };
+        return {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          image: user.image,
+        };
       },
     }),
   ],
@@ -47,6 +53,7 @@ export const authOptions = {
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);

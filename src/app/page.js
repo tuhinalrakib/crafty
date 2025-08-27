@@ -11,7 +11,7 @@ export default function Home() {
       <meta name="viewport" content="width=device-width, initial-scale-1"/>
 
     </Head>
-    <main className="scroll-smooth min-h-screen bg-[#122117] px-1">
+    <main className="scroll-smooth bg-[#122117] px-1">
       <section className="pt-16 flex items-center justify-center mt-10">
         <Hero />
       </section>
