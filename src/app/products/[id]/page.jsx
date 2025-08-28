@@ -7,11 +7,12 @@ export default function ProductDetailsPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // https://crafty-black.vercel.app
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/auctions/products/${id}`);
+        const res = await fetch(`https://crafty-black.vercel.app/api/auctions/products/${id}`);
         console.log(res)
         if (!res.ok) throw new Error("Failed to fetch product");
         const data = await res.json();

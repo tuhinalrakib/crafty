@@ -20,7 +20,7 @@ export async function GET(req) {
   try {
     const products = await dbConnect(collection.PRODUCTS).find({}).toArray(); // সব product fetch
 
-    return new Response(JSON.stringify({ success: true, products }), {
+    return new Response(JSON.stringify({ products }), {
       status: 200,
     });
   } catch (error) {

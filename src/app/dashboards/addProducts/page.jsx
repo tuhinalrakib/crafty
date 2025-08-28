@@ -44,24 +44,24 @@ export default function AddProductPage() {
   // Handle Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
-               
-        // যদি নতুন file select করে তাহলে Cloudinary তে upload হবে
-        // if (imageFile) {
-        //     uploadedImageUrl = await handleImageUpload();
-        //     setImageUrl(uploadedImageUrl);
-        // }
-        if(!imageUrl){
-            Swal.fire("Please wait", "Image is still uploading. Try again in a moment.", "info");
-            return;
-        }
-        setLoading(true);
 
-      const res = await fetch("http://localhost:3000/api/auctions/products", {
+    try {
+
+      // যদি নতুন file select করে তাহলে Cloudinary তে upload হবে
+      // if (imageFile) {
+      //     uploadedImageUrl = await handleImageUpload();
+      //     setImageUrl(uploadedImageUrl);
+      // }
+      if (!imageUrl) {
+        Swal.fire("Please wait", "Image is still uploading. Try again in a moment.", "info");
+        return;
+      }
+      setLoading(true);
+
+      const res = await fetch("https://crafty-black.vercel.app/api/auctions/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productName, imageUrl , price, description }),
+        body: JSON.stringify({ productName, imageUrl, price, description }),
       });
 
       if (res.ok) {

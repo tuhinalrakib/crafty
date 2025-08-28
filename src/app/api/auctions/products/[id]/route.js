@@ -1,16 +1,16 @@
-import dbConnect from "@/lib/dbConnect";
+import dbConnect, { collection } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 
 export async function GET(req, { params }) {
   try {
-    const id = params.id; // No need to await
+    const { id } = params;  // No need to await
     if (!id) {
       return new Response(JSON.stringify({ error: "Product ID is required" }), {
         status: 400,
       });
     }
 
-    const product = await dbConnect("products").findOne({ _id: new ObjectId(id) });
+    const product = await dbConnect(collection.PRODUCTS).findOne({ _id: new ObjectId(id) });
 
     if (!product) {
       return new Response(JSON.stringify({ error: "Product not found" }), { status: 404 });
