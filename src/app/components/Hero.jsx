@@ -8,7 +8,7 @@ const slides = [
     title: "Discover the Latest Tech",
     desc: "Explore our curated collection of cutting-edge gadgets and accessories. From smart home devices to laptops, we have everything you need to stay ahead.",
     btnText: "Shop Now",
-    btnLink: "/shop",
+    btnLink: "/products",
     img: "/banner1.jpg",
   },
   {
@@ -16,7 +16,7 @@ const slides = [
     title: "Upgrade Your Workspace",
     desc: "Find modern and ergonomic setups designed to boost productivity and style.",
     btnText: "Explore",
-    btnLink: "/workspace",
+    btnLink: "/products",
     img: "/banner2.png",
   },
   {
@@ -24,7 +24,7 @@ const slides = [
     title: "Smart Home Essentials",
     desc: "Make your home smarter with the latest connected devices and automation tools.",
     btnText: "Browse",
-    btnLink: "/smart-home",
+    btnLink: "/products",
     img: "/banner4.jpg",
   },
 ];

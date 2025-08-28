@@ -12,7 +12,6 @@ export default function AddProductPage() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
 
   // Redirect unauthenticated users
@@ -23,9 +22,9 @@ export default function AddProductPage() {
   }, [status, router]);
 
   // Upload image to Cloudinary
-  const handleImageUpload = async () => {
-    if (!imageFile) return "";
-
+  const handleImageUpload = async (e) => {
+    // if (!imageFile) return "";
+    const imageFile = e.target.files[0]
     const formData = new FormData();
     formData.append("file", imageFile);
     formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET);
@@ -39,7 +38,7 @@ export default function AddProductPage() {
     );
 
     const data = await res.json();
-    return data.secure_url; // Cloudinary public URL
+    return setImageUrl(data.secure_url); // Cloudinary public URL
   };
 
   // Handle Form Submit
@@ -47,13 +46,12 @@ export default function AddProductPage() {
     e.preventDefault();
     
     try {
-        let uploadedImageUrl = imageUrl;
-        
+               
         // যদি নতুন file select করে তাহলে Cloudinary তে upload হবে
-        if (imageFile) {
-            uploadedImageUrl = await handleImageUpload();
-            setImageUrl(uploadedImageUrl);
-        }
+        // if (imageFile) {
+        //     uploadedImageUrl = await handleImageUpload();
+        //     setImageUrl(uploadedImageUrl);
+        // }
         if(!imageUrl){
             Swal.fire("Please wait", "Image is still uploading. Try again in a moment.", "info");
             return;
@@ -75,7 +73,7 @@ export default function AddProductPage() {
         setProductName("");
         setPrice("");
         setDescription("");
-        setImageFile(null);
+        router.push("/products")
         setImageUrl("");
       } else {
         Swal.fire("Error", "Failed to add product", "error");
@@ -90,7 +88,7 @@ export default function AddProductPage() {
 
   if (status === "loading") return <p>Loading...</p>;
   if (status === "unauthenticated") return null; // redirecting
-console.log(imageUrl)
+
   return (
     <div className="max-w-md mx-auto my-20 p-6 bg-white rounded shadow">
       <h2 className="text-2xl font-bold mb-4">Add New Product</h2>
@@ -108,18 +106,18 @@ console.log(imageUrl)
         <input
           type="file"
           accept="image/*"
-          onChange={(e) => setImageFile(e.target.files[0])}
+          onChange={handleImageUpload}
           className="border p-2 rounded"
         />
 
         {/* Optional: Show preview */}
-        {imageFile && (
+        {/* {imageFile && (
           <img
             src={URL.createObjectURL(imageFile)}
             alt="preview"
             className="h-32 w-full object-cover rounded"
           />
-        )}
+        )} */}
 
         <input
           type="number"

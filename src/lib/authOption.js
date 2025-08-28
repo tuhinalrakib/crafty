@@ -14,8 +14,8 @@ export const authOptions = {
       },
       async authorize(credentials) {
         const { email, password } = credentials
-        const user = await dbConnect(collection.NEXT_USER).findOne({email, password})
-        console.log(user)
+        console.log(email)
+        const user = await dbConnect(collection.NEXT_USER).findOne({email})
 
         const isPasswordOk = email == user.email
         if (isPasswordOk) {

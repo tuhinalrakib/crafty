@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AllProducts() {
@@ -23,7 +24,6 @@ export default function AllProducts() {
 
     fetchProducts();
   }, []);
-  console.log(products)
 
   if (loading) return <p className="text-center text-lg">Loading products...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
@@ -31,7 +31,7 @@ export default function AllProducts() {
     return <p className="text-center text-gray-500">No products found.</p>;
 
   return (
-    <div className="my-20 px-6">
+    <div className="p-6 bg-[#122117]">
       <h2 className="text-2xl font-bold my-8 text-center">All Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.map((product) => (
@@ -59,8 +59,8 @@ export default function AllProducts() {
               </p>
 
               {/* Button */}
-              <button className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
-                View Details
+              <button className="mt-4 w-full cursor-pointer bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
+                <Link href={`/products/${product._id}`}>View Details</Link>
               </button>
             </div>
           </div>

@@ -15,5 +15,5 @@ export default function dbConnect(collectionName) {
         }
     })
 
-    return client.db(process.env.DB_NAME).collection(collectionName)
+    return client.db(process.env.NEXT_PUBLIC_DB_USER).collection(collectionName)
 }

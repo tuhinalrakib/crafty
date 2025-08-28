@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -16,10 +17,14 @@ export default function LoginPage() {
       email,
       password,
     });
-    console.log("res")
 
     if (res.ok) {
-      router.push("/");
+      Swal.fire({
+        title: "Login Successfully!",
+        icon: "success",
+        draggable: true
+      });
+      router.push("/products");
     } else {
       alert(res.error);
     }
@@ -46,7 +51,7 @@ export default function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        <button className="w-full bg-blue-600 cursor-pointer text-white py-2 rounded hover:bg-blue-700">
           Login
         </button>
       </form>

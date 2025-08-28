@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaSquareFacebook, FaTwitter } from "react-icons/fa6";
 
 export default function Footer() {
     return (
@@ -95,31 +96,13 @@ export default function Footer() {
                     </form>
                     <div className="flex space-x-4 mt-4">
                         <Link href="https://facebook.com" target="_blank">
-                            <svg
-                                className="w-6 h-6 hover:text-white transition"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 5...Z" />
-                            </svg>
+                            <FaSquareFacebook size={24}/>
                         </Link>
                         <Link href="https://twitter.com" target="_blank">
-                            <svg
-                                className="w-6 h-6 hover:text-white transition"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M23 3a10.9 10.9 0 01-3.14 1...Z" />
-                            </svg>
+                            <FaTwitter size={24}/>
                         </Link>
                         <Link href="https://linkedin.com" target="_blank">
-                            <svg
-                                className="w-6 h-6 hover:text-white transition"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M16 8a6 6 0 016 6v7h-4v-7...Z" />
-                            </svg>
+                            
                         </Link>
                     </div>
                 </div>

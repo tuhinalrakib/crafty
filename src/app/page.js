@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Hero from "./components/Hero";
 import Head from "next/head";
+import ProductHighlights from "./components/HightLights";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
     <main className="scroll-smooth bg-[#122117] px-1">
       <section className="pt-16 flex items-center justify-center mt-10">
         <Hero />
+      </section>
+      <section className="pt-16 flex items-center justify-center mt-10">
+        <ProductHighlights />
       </section>
     </main>
     </>
