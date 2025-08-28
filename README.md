@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#Crafty App
 
-## Getting Started
+A modern gadgets product showcase web application built with **Next.js** featuring public and protected routes, NextAuth authentication, and a clean responsive design.  
 
-First, run the development server:
+---
 
+## Features
+
+### 1. Landing Page (`/`)
+- **Navbar:** Navigation links to Home, Login, and Products pages.  
+- **Hero Section:** Engaging hero with a call-to-action.  
+- **Product Highlights:** Showcase featured products with brief details.  
+- **Footer:** Contact information and quick links.  
+- **Navigation:** Users can navigate to Login and Products pages without authentication.  
+
+### 2. Login Page (`/login`)
+- **Authentication:** Login via NextAuth using credentials or social login (e.g., Google).  
+- **Redirection:** Successful login redirects to `/products`.  
+- **Security:** Uses secure JWT-based sessions.  
+
+### 3. Product List Page (`/products`)
+- **Public Access:** Accessible without login.  
+- **Product Display:** Lists products with name, description, price, and a "Details" button.  
+- **Data Source:** Fetches products from a mock backend or static file.  
+
+### 4. Product Details Page (`/products/[id]`)
+- **Public Access:** Anyone can view product details.  
+- **Full Information:** Displays complete product information including name, description, price, and additional details.  
+
+### 5. Protected Page: Add Product (`/dashboard/add-product`)
+- **Authentication Required:** Only accessible for logged-in users.  
+- **Add Product Form:** Form to add a new product and save it in the database.  
+- **Redirect:** Unauthenticated users are redirected to the login page.  
+
+---
+
+## Setup & Installation
+
+1. **Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone <your-repo-url>
+cd <project-folder>
